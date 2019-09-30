@@ -16,7 +16,7 @@ module.exports = {
 async function roll(msg){
   try{
     const response = await axios.get(`http://${config.dicebot.url}:${config.dicebot.port}/roll/${msg.content}`);
-    if(response.data.result){
+    if(response.data.result && !response.data.trivial){
       let reply = await msg.reply(`🎲${msg.content}🎲`);
       await sleep(200);
       await reply.edit(`🎲 ${response.data.result} 🎲`)
