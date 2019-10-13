@@ -20,7 +20,8 @@ client
         console.log(`WARNING! Rate limit Path: ${rateLimitInfo.path}`);
     });
 
-require('./modules/dicebot').init(client)
+require('./modules/dicebot').init(client);
+require('./modules/autopurge').init(client);
 
 function main() {
     console.log("Starting Bot");
