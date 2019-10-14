@@ -9,7 +9,7 @@ const client = new commando.Client({
 client
     .on('error',console.error)
     .on('warn',console.warn)
-    .on('debug', console.log)
+//    .on('debug', console.log)
     .on('disconnect', () => { console.warn('Disconnected!'); })
 	  .on('reconnecting', () => { console.warn('Reconnecting...'); })
     .on('ready', () => {
