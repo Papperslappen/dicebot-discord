@@ -1,4 +1,4 @@
-const commando = require('discord.js');
+const commando = require('discord.js-commando');
 const config = require('./config');
 
 const client = new commando.Client({
@@ -19,9 +19,11 @@ client
     .on('rateLimit', (rateLimitInfo) => {
         console.log(`WARNING! Rate limit Path: ${rateLimitInfo.path}`);
     });
+client.registry.registerDefaults();
 
 require('./modules/dicebot').init(client);
 require('./modules/autopurge').init(client);
+require('./modules/greeter').init(client);
 
 function main() {
     console.log("Starting Bot");
