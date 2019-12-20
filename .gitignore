@@ -88,3 +88,6 @@ typings/
 
 # vscode
 .vscode
+
+# node-persist
+.node-persist
