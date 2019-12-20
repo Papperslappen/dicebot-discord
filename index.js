@@ -4,6 +4,7 @@ const config = require('./config');
 const client = new commando.Client({
     owner: config.discord.bot_owner,
     commandPrefix: config.discord.prefix,
+    unknownCommandResponse: false,
 });
 
 client
