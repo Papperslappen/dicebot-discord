@@ -126,7 +126,7 @@ class CreateGMChannel extends commando.Command {
 				let channel = await msg.guild.createChannel(channel_name,{
 						type: "text",
 						parent: category_id,
-						reason: `Skapade kanal på begäran av (${msg.author.tag})`
+						reason: `Skapade kanal på begäran av ${msg.author.displayName} (${msg.author.tag})`
 					});
 					msg.reply(`Skapade kanalen ${channel.toString()}! Mycket nöje`);
 					console.log(`Created channel ${channel.toString()}!`)
