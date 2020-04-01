@@ -6,17 +6,19 @@ module.exports = {
         client.on('message',(msg) => {
             if(is_autopurging(msg.channel)){
                 //Only post a warning message once until the channel has been cleared
-                if(_timeouts[msg.channel.id]){ 
+                if(_timeouts[msg.channel.id]){
                     client.clearTimeout(_timeouts[msg.channel.id]);
                 }else{
-                    msg.channel.send(`⚠️ Denna kanal rensas från allt utom fästa meddelanden efter en stunds inaktivitet för att relevant information ska finnas kvar,
+                    msg.channel.send(
+                    `⚠️ Denna kanal rensas från allt utom fästa meddelanden efter en stunds
+                    inaktivitet för att relevant information ska finnas kvar,
                     fortstätt gärna eventuell diskussion i någon annan kanal ⚠️`); //TODO: Make this message configurable
                 }
                 _timeouts[msg.channel.id] = client.setTimeout((msg)=>{
                     delete _timeouts[msg.channel.id];
                     deleteAllNonePinnedFrom(msg.channel).catch(console.err);
                 },config.discord.autopurgetime,msg);
-            }       
+            }
         });
     }
 }
