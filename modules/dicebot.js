@@ -13,22 +13,29 @@ module.exports = {
 }
 
 function dice_emoji_replace(msg,s){
-  const find_client_emoji = (name) = msg.guild.emojis.find(emoji => emoji.name === name).toString();
+
   if(msg.guild){
-    return s.replace(/\(d4\):/g,find_client_emoji("emoji_7"))
-             .replace(/\(d6\):/g,find_client_emoji("emoji_8"))
-             .replace(/\(d8\):/g,find_client_emoji("emoji_9"))
-             .replace(/\(d10\):/g,find_client_emoji("emoji_10"))
-             .replace(/\(d20\):/g,find_client_emoji("emoji_15"))
-             .replace(/\(d100\):/g,find_client_emoji("emoji_10") + find_client_emoji("emoji_10"))
-           } else {
-             return s
-           }
+    console.log(s);
+    const find_client_emoji = (name) = msg.guild.emojis.find(emoji => emoji.name === name).toString();
+    const d4 = find_client_emoji("emoji_7") || "(d4)";
+    const d6 = find_client_emoji("emoji_8") || "(d6)";
+    const d8 = find_client_emoji("emoji_9") || "(d8)";
+    const d10 = find_client_emoji("emoji_10") || "(d10)";
+    const d20 = find_client_emoji("emoji_15") || "(d20)";
+    return s.replace(/\(d4\):/g,d4)
+             .replace(/\(d6\):/g,d6)
+             .replace(/\(d8\):/g,d8)
+             .replace(/\(d10\):/g,d10)
+             .replace(/\(d20\):/g,d20)
+             .replace(/\(d100\):/g,d10+d10);
+   } else {
+     return s;
+   }
 }
 
 function format_roll_data(msg,data){
     if(2 <= data.number_of_rolls <= 15){
-      return `${dice_emoji_replace(client,data.formula)} = **${data.result}**`;
+      return `${data.formula} = **${data.result}**`;
     }else{
       return (`🎲**${data.result}** 🎲`);
     }
