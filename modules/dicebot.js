@@ -34,7 +34,7 @@ function dice_emoji_replace(msg,s){
 }
 
 function format_roll_data(msg,data){
-    if(2 <= data.number_of_rolls <= 15){
+    if(2 <= data.number_of_rolls && data.number_of_rolls <= 15){
       return `${data.formula} = **${data.result}**`;
     }else{
       return (`🎲**${data.result}** 🎲`);
