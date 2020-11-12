@@ -116,14 +116,15 @@ class CreateGMChannel extends commando.Command {
 		});
   }
   hasPermission(msg){
-		return msg.member.roles.some((role)=>role.name === gm_role);
+		return msg.member.roles.cache.some((role)=>role.name === gm_role);
   }
   async run(msg,args){
+	  	console.log(`Trying to create channel ${args.namn}`)
 		let category_id = await storage.getItem("gm_channel_category_id");
 		//let role = await storage.getItem("gm_channel_role");
 		let channel_name = `${DM_PREFIX}-${args.namn}`;
     try {
-				let channel = await msg.guild.createChannel(channel_name,{
+				let channel = await msg.guild.channels.create(channel_name,{
 						type: "text",
 						parent: category_id,
 						reason: `Skapade kanal på begäran av ${msg.author.displayName} (${msg.author.tag})`
