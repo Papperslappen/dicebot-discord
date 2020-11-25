@@ -43,7 +43,7 @@ function dice_emoji_replace(msg,s2){
 function format_roll_data(msg,data){
     const formula = dice_emoji_replace(msg,data.formula);
     //const formula = data.formula;
-    if(2 <= data.number_of_rolls && data.number_of_rolls <= 15){
+    if(2 <= data.size && data.number_of_rolls <= 15){
       return `${formula} = **${data.result}**`;
     }else{
       return (`${formula}`);
