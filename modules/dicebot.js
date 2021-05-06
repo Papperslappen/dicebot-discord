@@ -53,7 +53,7 @@ function format_roll_data(msg,data){
 
 async function roll(msg){
   try{
-    const response = await axios.get(`http://${config.dicebot.url}:${config.dicebot.port}/roll/${msg.content}`);
+    const response = await axios.get(`http://${config.dicebot.url}:${config.dicebot.port}/roll/${msg.content.toLowerCase()}`);
     if(response.data.result && !response.data.trivial){
       let reply = await msg.reply(`🎲${msg.content}🎲`);
       //console.log(`data: ${format_roll_data(msg,response.data)}`);
